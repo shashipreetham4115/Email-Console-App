@@ -3,8 +3,8 @@
 S.No    : 1
 Subject : Welcome to Zoho Mail
 From    : welcome@zoho.com
-To      : 
-Date    : 01/02/2022 04:51 PM 
+To      : shashipreetham@zoho.com
+Date    : 01/02/2022 05:37 PM 
 
 Hello,
 
