@@ -2,7 +2,6 @@ package ui
 
 import entites.Profile
 import entites.User
-import enums.ROLE
 import logic.auth.AuthenticateHandler
 import ui.services.AuthenticateUiServices
 import ui.services.ToDoMenuServices
@@ -23,7 +22,10 @@ object AuthenticateUi : ToDoMenuServices, AuthenticateUiServices {
         "What was your favorite place to visit as a child?",
         "What is the country of your ultimate dream vacation?"
     )
-    var loggedInUser: Profile? = Profile("Shashi Preetham", "shashipreetham@zoho.com", ROLE.USER)
+
+    //    var loggedInUser: Profile? = Profile("Shashi Preetham", "shashipreetham@zoho.com", ROLE.USER)
+//        private set
+    var loggedInUser: Profile? = null
         private set
 
     override fun toDoMenu() {
