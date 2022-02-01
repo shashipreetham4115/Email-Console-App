@@ -123,11 +123,12 @@ class MailUi(val folder: String) : ToDoMenuServices, MailUiServices {
                 |S.No    : ${sno + 1}
                 |Subject : ${i.subject}
                 |From    : ${i.from}
+                |To      : ${i.to.joinToString(";")}
                 |Date    : ${FormatterUtils.formatDate(i.sentDate)} ${FormatterUtils.formatTime(i.sentTime)} 
                 |
                 |${FormatterUtils.formatString(i.body)}
                 |--------------------------------------------------------------------------------------------------------
-                |
+                |                                                   ↑
             """.trimMargin("|")
                 )
             }
