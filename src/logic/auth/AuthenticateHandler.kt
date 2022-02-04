@@ -38,7 +38,7 @@ class AuthenticateHandler : AuthenticateHandlerServices {
         user?.password = password
     }
 
-    fun isEmailAvailable(email: String): String {
+    override fun isEmailAvailable(email: String): String {
         return if (EmailDataHandler.getDomain(email.split("@")[1]) != null)
             if (EmailDataHandler.getUser(email) == null) "Email Available" else "Email Already Exists"
         else "Invalid Domain"

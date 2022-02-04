@@ -1,35 +1,115 @@
 package ui
 
 import entites.Mail
+import ui.services.MailOperationsUiServices
 import ui.services.MailUiServices
 import ui.services.ToDoMenuServices
 import ui.utils.FileWritter
 import ui.utils.FormatterUtils
 import ui.utils.InputUtil
+import ui.utils.MenuList
 
 class MailUi(val folder: String) : ToDoMenuServices, MailUiServices {
-    private val operations = MailOperationsUi()
+    private val operations: MailOperationsUiServices = MailOperationsUi()
     private var mailList = listOf<Mail>()
 
     override fun toDoMenu() {
-        val request = """
-          1) Open Mail
-          2) Delete Mails
-          3) Mark Mails As UnRead
-          4) Mark Mails As Important
-          5) Mark Mails As UnImportant
-          6) Go Back
-          Please Choose Your Choice
-       """.trimIndent()
         while (true) {
             if (!displayMails()) return
-            when (val i = InputUtil.getInt(request)) {
+            when (val i = InputUtil.getInt(MenuList.getMailListMenu())) {
                 -1, 6 -> return
                 1 -> displayMail()
                 2, 3, 4, 5 -> callToDoFuncs(i)
                 else -> println("Please Enter Valid Option")
             }
         }
+    }
+
+    override fun displayMails(): Boolean {
+        mailList = operations.fetchFolder(folder.lowercase())
+        val strFormatter = "%1\$-10s%2\$-30s%3\$-35s%4\$-20s%5\$-10s"
+        FileWritter.myFile.printWriter().use { out ->
+            out.println("\n------------------------------------------------${folder.uppercase()}---------------------------------------------------")
+            if (mailList.isEmpty()) {
+                out.println("$folder is Empty")
+                out.println("--------------------------------------------------------------------------------------------------------")
+                return false
+            }
+            out.println("--------------------------------------------------------------------------------------------------------")
+            out.println(
+                String.format(
+                    strFormatter,
+                    "S.No",
+                    if (folder == "Inbox") "From" else "To",
+                    "Subject",
+                    "Date",
+                    if (folder == "Inbox") "Status" else ""
+                )
+            )
+            out.println("--------------------------------------------------------------------------------------------------------")
+            for ((sno, i) in mailList.withIndex()) {
+                val to = i.to.joinToString(",")
+                val toFor = if (to.length > 25) to.substring(0..25) + "..." else to
+                val fromFor = if (i.from.length > 25) i.from.substring(0..25) + "..." else i.from
+                val subFor = if (i.subject.length > 25) i.subject.substring(0..25) + "..." else i.subject
+                out.println(
+                    String.format(
+                        strFormatter,
+                        sno + 1,
+                        if (folder == "Inbox") fromFor else toFor,
+                        subFor,
+                        FormatterUtils.formatDate(i.sentDate),
+                        if (folder == "Inbox") if (i.unRead) "Unread" else "Read" else ""
+                    )
+                )
+            }
+            out.println("--------------------------------------------------------------------------------------------------------")
+        }
+        return true
+    }
+
+    override fun displayMailDoMenu(mail: Mail) {
+        val compose: ToDoMenuServices = ComposeMailUi(mail)
+        while (true) {
+            val input = InputUtil.getInt(MenuList.getMailMenu(folder))
+            val options = arrayOf("--q", "") + MenuList.getMailMenu(folder).split("\n")
+            when (val i = options[input + 1]) {
+                "--q", "5) Go Back", "4) Go Back" -> return
+                "1) Reply", "2) Reply All" -> return operations.reply(mail, i == "2) Reply All")
+                "2) Edit" -> return compose.toDoMenu()
+                "1) Send" -> return operations.send(mail)
+                "3) Forward" -> return operations.forward(mail)
+                "4) Delete", "3) Delete" -> return operations.delete(listOf(mail.id))
+                else -> println("Please Enter Valid Option")
+            }
+        }
+    }
+
+    override fun displayMail() {
+        val i = InputUtil.getInt("Please Enter S.No of Mail You Want to Display")
+        if (i == -1) return
+        val mId = if (folder == "Inbox") mailList[i - 1].headMailId else mailList[i - 1].id
+        val mailThread = operations.fetch(mId, folder.lowercase())
+        FileWritter.myFile.printWriter().use { out ->
+            for ((sno, i) in mailThread.withIndex()) {
+                out.println(
+                    """
+                |
+                |--------------------------------------------------------------------------------------------------------
+                |S.No    : ${String.format("%1\$-80s%2\$-5s", sno + 1, i.folder.uppercase())}
+                |Subject : ${i.subject}
+                |From    : ${i.from}
+                |To      : ${i.to.joinToString(";")}
+                |Date    : ${FormatterUtils.formatDate(i.sentDate)}
+                |
+                |${i.body}
+                |--------------------------------------------------------------------------------------------------------
+                |                                                   ↑
+            """.trimMargin("|")
+                )
+            }
+        }
+        displayMailDoMenu(mailThread[0])
     }
 
     private fun callToDoFuncs(i: Int) {
@@ -55,84 +135,5 @@ class MailUi(val folder: String) : ToDoMenuServices, MailUiServices {
             }
         }
         return mailIds.toList()
-    }
-
-    override fun displayMails(): Boolean {
-        mailList = operations.fetchFolder(folder.lowercase())
-        val strFormatter = "%1\$-10s%2\$-30s%3\$-35s%4\$-12s%5\$-10s%6\$-10s"
-        FileWritter.myFile.printWriter().use { out ->
-            out.println("\n------------------------------------------------${folder.uppercase()}---------------------------------------------------")
-            if (mailList.isEmpty()) {
-                out.println("$folder is Empty")
-                out.println("--------------------------------------------------------------------------------------------------------")
-                return false
-            }
-            out.println("--------------------------------------------------------------------------------------------------------")
-            out.println(String.format(strFormatter, "S.No", "From", "Subject", "Date", "Time", "Status"))
-            out.println("--------------------------------------------------------------------------------------------------------")
-            for ((sno, i) in mailList.withIndex()) {
-                out.println(
-                    String.format(
-                        strFormatter,
-                        sno + 1,
-                        i.from,
-                        i.subject,
-                        FormatterUtils.formatDate(i.sentDate),
-                        FormatterUtils.formatTime(i.sentTime),
-                        if (i.unRead) "Unread" else "Read"
-                    )
-                )
-            }
-            out.println("--------------------------------------------------------------------------------------------------------")
-        }
-        return true
-    }
-
-    override fun displayMailDoMenu(mail: Mail) {
-        val request = """
-          ${if (folder == "Draft") "" else "1) Reply"}
-          ${if (folder == "Draft") "" else "2) Reply All"}
-          ${if (folder == "Draft") "3) Edit" else "3) Forward"}
-          4) Delete
-          6) Go Back
-          Please Choose Your Choice
-       """.trimIndent()
-        val compose = ComposeMailUi(mail)
-        while (true) {
-            when (val i = InputUtil.getInt(request)) {
-                -1, 6 -> return
-                1 -> return operations.reply(mail, false)
-                2 -> return operations.reply(mail, true)
-                3 -> return compose.toDoMenu()
-                4 -> return operations.delete(listOf(mail.id))
-                else -> println("Please Enter Valid Option")
-            }
-        }
-    }
-
-    override fun displayMail() {
-        val i = InputUtil.getInt("Please Enter S.No of Mail You Want to Display")
-        if (i == -1) return
-        val mailThread = operations.fetch(mailList[i - 1].id, folder.lowercase())
-        FileWritter.myFile.printWriter().use { out ->
-            for ((sno, i) in mailThread.withIndex()) {
-                out.println(
-                    """
-                |
-                |--------------------------------------------------------------------------------------------------------
-                |S.No    : ${sno + 1}
-                |Subject : ${i.subject}
-                |From    : ${i.from}
-                |To      : ${if (i.to.isNotEmpty()) i.to.joinToString(";") else AuthenticateUi.loggedInUser?.email}
-                |Date    : ${FormatterUtils.formatDate(i.sentDate)} ${FormatterUtils.formatTime(i.sentTime)} 
-                |
-                |${FormatterUtils.formatString(i.body)}
-                |--------------------------------------------------------------------------------------------------------
-                |                                                   ↑
-            """.trimMargin("|")
-                )
-            }
-        }
-        displayMailDoMenu(mailThread[0])
     }
 }

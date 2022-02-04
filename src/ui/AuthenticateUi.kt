@@ -3,13 +3,15 @@ package ui
 import entites.Profile
 import entites.User
 import logic.auth.AuthenticateHandler
+import logic.services.AuthenticateHandlerServices
 import ui.services.AuthenticateUiServices
 import ui.services.ToDoMenuServices
 import ui.utils.InputUtil
 import ui.utils.InputValidationUtil
+import ui.utils.MenuList
 
 object AuthenticateUi : ToDoMenuServices, AuthenticateUiServices {
-    private val auth = AuthenticateHandler()
+    private val auth: AuthenticateHandlerServices = AuthenticateHandler()
     private val questions = arrayOf(
         "What city were you born in?",
         "What is your oldest sibling’s middle name?",
@@ -29,17 +31,8 @@ object AuthenticateUi : ToDoMenuServices, AuthenticateUiServices {
         private set
 
     override fun toDoMenu() {
-        val request = """
-    --------Welcome to Zoho Mail---------
-    
-    1) Sign in
-    2) Sign up
-    3) Forgot Password
-    4) Exit
-    Please Enter Your Choice
-    """.trimIndent()
         while (loggedInUser == null) {
-            when (InputUtil.getInt(request)) {
+            when (InputUtil.getInt(MenuList.getAuthMenu())) {
                 1 -> signIn()
                 2 -> signUp()
                 3 -> forgotPassword()
@@ -77,7 +70,7 @@ object AuthenticateUi : ToDoMenuServices, AuthenticateUiServices {
             if (email == "--q") return
             isEmail = auth.isEmailAvailable(email)
         }
-        val password = InputUtil.getString("Please Enter Your Password")
+        val password = InputValidationUtil.getPassword()
         if (password == "--q") return
         val firstName = InputUtil.getString("Please Enter Your First Name")
         if (firstName == "--q") return
@@ -102,7 +95,7 @@ object AuthenticateUi : ToDoMenuServices, AuthenticateUiServices {
             securityAns = InputUtil.getString(questions[auth.getSecurityQuestion(email)])
             if (securityAns == "--q") return
         }
-        val password = InputUtil.getString("Please Enter Your New Password")
+        val password = InputValidationUtil.getPassword()
         if (password == "--q") return
         auth.setPassword(email, password)
         println("New Password For $email Set Succesfully")

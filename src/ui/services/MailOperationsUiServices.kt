@@ -12,4 +12,5 @@ interface MailOperationsUiServices {
     fun delete(mailIds: List<String>)
     fun fetch(mailId: String, folder: String): List<Mail>
     fun fetchFolder(folder: String): List<Mail>
+    fun forward(mail: Mail)
 }

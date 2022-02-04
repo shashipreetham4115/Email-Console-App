@@ -21,9 +21,11 @@ object EmailDataHandler {
         val user1 = User("Mailer", "Demon", "mailer@zoho.com", 0, "********", 9, "Paris")
         val user2 = User("Welcome", "", "welcome@zoho.com", 2, "********", 9, "Paris")
         val user3 = User("No", "Reply", "no-reply@zoho.com", 2, "********", 9, "Paris")
+        val user4 = User("Preetham", "Reddy", "reddy@zoho.com", 2, "********", 9, "Paris")
         addUser(user1, ROLE.SADMIN)
         addUser(user2, ROLE.SADMIN)
         addUser(user3, ROLE.SADMIN)
+        addUser(user4, ROLE.SADMIN)
     }
 
     fun getDomain(id: String): Domain? {

@@ -1,0 +1,5 @@
+ ✔ Password Strength Checker
+ ✔ Reply Not Working
+ ✔ Forward Error
+ ✔ Classes need to call using Interfaces
+ ✔ File edits to be reflected to console

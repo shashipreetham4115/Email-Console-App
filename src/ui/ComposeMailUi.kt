@@ -2,25 +2,17 @@ package ui
 
 import entites.Mail
 import ui.services.ComposeMailUiServices
+import ui.services.MailOperationsUiServices
 import ui.services.ToDoMenuServices
-import ui.utils.FileWritter
-import ui.utils.InputUtil
-import ui.utils.InputValidationUtil
+import ui.utils.*
 
 class ComposeMailUi(var mail: Mail? = null) : ToDoMenuServices, ComposeMailUiServices {
-    private val operationsUi = MailOperationsUi()
+    private val operationsUi: MailOperationsUiServices = MailOperationsUi()
 
     override fun toDoMenu() {
-        val request = """
-            1) Send
-            2) Draft
-            3) Edit
-            4) Discard
-            Please Choose Your Choice
-        """.trimIndent()
         mail = if (mail == null) composeMail() else editMail()
         while (mail != null) {
-            when (InputUtil.getInt(request)) {
+            when (InputUtil.getInt(MenuList.getComposeMailMenu())) {
                 -1, 4 -> return
                 1 -> return operationsUi.send(mail!!)
                 2 -> return operationsUi.draft(mail!!)
@@ -44,7 +36,7 @@ class ComposeMailUi(var mail: Mail? = null) : ToDoMenuServices, ComposeMailUiSer
         val bcc = removeInvalidMails(InputUtil.getString("BCC"), "BCC") ?: return null
         val subject = InputUtil.getString("Subject")
         if (subject == "--q") return null
-        val body = InputUtil.getMultiLineInput("Body")
+        val body = FormatterUtils.formatString(InputUtil.getMultiLineInput("Body"))
         return Mail(AuthenticateUi.loggedInUser?.email!!, to, subject, body, cc, bcc)
     }
 
@@ -71,8 +63,9 @@ class ComposeMailUi(var mail: Mail? = null) : ToDoMenuServices, ComposeMailUiSer
 
     override fun editMail(): Mail {
         var to: List<String>
+        println("\u001B[31m" + "\nPlease Give Input From File And Click Enter After Giving Input" + "\u001B[0m")
         while (true) {
-            val temp = FileWritter.getFileInput(mail?.to?.joinToString("") ?: "", "", "To")
+            val temp = FileWritter.getFileInput(mail?.to?.joinToString(";") ?: "", "", "To")
             val response = removeInvalidMails(temp, "To") ?: listOf()
             if (response.isNotEmpty()) {
                 to = response
@@ -85,7 +78,7 @@ class ComposeMailUi(var mail: Mail? = null) : ToDoMenuServices, ComposeMailUiSer
         val bcc = removeInvalidMails(FileWritter.getFileInput(mail?.BCC?.joinToString("") ?: "", "", "BCC"), "BCC")
             ?: listOf()
         val subject = FileWritter.getFileInput(mail?.subject ?: "", "", "Subject")
-        val body = FileWritter.getFileInput(mail?.body ?: "", "\n", "Body")
+        val body = FormatterUtils.formatString(FileWritter.getFileInput(mail?.body ?: "", "\n", "Body"))
         val newMail: Mail = mail!!
         newMail.to = to
         newMail.CC = cc

@@ -9,4 +9,5 @@ interface AuthenticateHandlerServices {
     fun forgotPassword(email: String, answer: String): Boolean
     fun getSecurityQuestion(email: String): Int
     fun setPassword(email: String, password: String)
+    fun isEmailAvailable(email: String): String
 }

@@ -2,6 +2,7 @@ package logic.datahandler
 
 import entites.Mail
 import entites.MailBox
+import java.io.File
 
 object MailBoxHandler {
     private val mailboxes = mutableMapOf<String, MailBox>()
@@ -11,6 +12,7 @@ object MailBoxHandler {
             val address = getMailBoxAddress(email)
             val mailBox = MailBox(address)
             mailboxes[address] = mailBox
+            mailBox.mails[0].to = listOf(email)
             true
         } catch (e: Exception) {
             false
@@ -18,11 +20,15 @@ object MailBoxHandler {
     }
 
     fun getMails(email: String, folder: String): List<Mail> {
-        return getMail(email) { i -> i.folder == folder && i.headMailId == null }
+        return getMail(email) { i -> i.folder == folder }
     }
 
     fun getMail(email: String, mailId: String, folder: String): List<Mail> {
-        val list = getMail(email) { i -> i.folder == folder && (i.headMailId == mailId || i.id == mailId) }
+        val list =
+            getMail(email) { i ->
+                if (folder == "inbox") (i.folder == folder || i.folder == "sent") && i.headMailId == mailId
+                else i.folder == folder && i.id == mailId
+            }
         list.forEach { mail -> mail.unRead = false }
         return list
     }
@@ -31,11 +37,7 @@ object MailBoxHandler {
         return try {
             val mailboxAddress = getMailBoxAddress(to)
             if (mailboxAddress == null || mailboxAddress == "") return false
-            val mailExist = mailboxes[mailboxAddress]?.mails?.find { i -> i.id == mail.id }
-            if (mailExist == null)
-                mailboxes[mailboxAddress]?.mails?.add(mail)
-            else mailExist.folder = mail.folder
-            println(mail)
+            mailboxes[mailboxAddress]?.mails?.add(mail)
             true
         } catch (e: Exception) {
             false
@@ -68,6 +70,15 @@ object MailBoxHandler {
     }
 
     private fun getMailBoxAddress(email: String): String {
+        val myFile = File("debug.txt")
+        myFile.printWriter().use { out ->
+            mailboxes.forEach { i ->
+                run {
+                    out.println("\n" + i.key + "\n")
+                    i.value.mails.forEach { out.println("$it\n") }
+                }
+            }
+        }
         val userid = EmailDataHandler.getUserId(email)
         return userid?.replace("-", "") ?: ""
     }
