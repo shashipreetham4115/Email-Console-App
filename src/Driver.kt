@@ -11,19 +11,22 @@ fun main() {
     val sent: ToDoMenuServices = MailUi("Sent")
     val draft: ToDoMenuServices = MailUi("Draft")
     val outbox: ToDoMenuServices = MailUi("Outbox")
+    val important: ToDoMenuServices = MailUi("Important")
     val auth: ToDoMenuServices = AuthenticateUi
-
+    println("--------Welcome to Zoho Mail---------")
     while (true) {
+        val compose: ToDoMenuServices = ComposeMailUi()
         auth.toDoMenu()
 
         when (InputUtil.getInt(MenuList.getMainMenu())) {
             1 -> inbox.toDoMenu()
             2 -> sent.toDoMenu()
             3 -> draft.toDoMenu()
-            4 -> ComposeMailUi().toDoMenu()
+            4 -> compose.toDoMenu()
             5 -> outbox.toDoMenu()
-            6 -> AuthenticateUi.signOut()
-            7 -> exitProcess(0)
+            6 -> important.toDoMenu()
+            7 -> AuthenticateUi.signOut()
+            8 -> exitProcess(0)
         }
 
     }

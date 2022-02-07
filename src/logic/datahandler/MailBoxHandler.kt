@@ -20,13 +20,13 @@ object MailBoxHandler {
     }
 
     fun getMails(email: String, folder: String): List<Mail> {
-        return getMail(email) { i -> i.folder == folder }
+        return getMail(email) { i -> i.folder == folder || (folder == "important" && i.folder == "inbox" && i.important) }
     }
 
     fun getMail(email: String, mailId: String, folder: String): List<Mail> {
         val list =
             getMail(email) { i ->
-                if (folder == "inbox") (i.folder == folder || i.folder == "sent") && i.headMailId == mailId
+                if (folder == "inbox" || folder == "important") (i.folder == "inbox" || i.folder == "sent") && i.headMailId == mailId
                 else i.folder == folder && i.id == mailId
             }
         list.forEach { mail -> mail.unRead = false }
@@ -36,7 +36,7 @@ object MailBoxHandler {
     fun addMail(mail: Mail, to: String): Boolean {
         return try {
             val mailboxAddress = getMailBoxAddress(to)
-            if (mailboxAddress == null || mailboxAddress == "") return false
+            if (mailboxAddress == "") return false
             mailboxes[mailboxAddress]?.mails?.add(mail)
             true
         } catch (e: Exception) {

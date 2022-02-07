@@ -1,7 +1,20 @@
 
-------------------------------------------------INBOX---------------------------------------------------
 --------------------------------------------------------------------------------------------------------
-S.No      From                          Subject                            Date                Status    
+S.No    : 1                                                                               INBOX
+Subject : Welcome to Zoho Mail
+From    : welcome@zoho.com
+To      : reddy@zoho.com
+                 
+Date    : 07/02/2022 10:02 AM
+
+Hello,
+
+Welcome to Zoho Mail! The 'forever ad-free' email service, for all your business and personal email.
+We created Zoho Mail to help people and businesses work smarter and take control of their inbox. 
+Thanks for choosing Zoho Mail! We’re glad to have you with us!
+
+Thanks and Regards,
+Zoho Mail Team.
+
 --------------------------------------------------------------------------------------------------------
-1         welcome@zoho.com              Welcome to Zoho Mail               04/02/2022 01:49 PM Unread    
---------------------------------------------------------------------------------------------------------
+                                                   ↑

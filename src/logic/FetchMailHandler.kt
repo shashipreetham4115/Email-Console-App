@@ -16,11 +16,6 @@ class FetchMailHandler : FetchMailServices {
     }
 
     override fun fetch(email: String, mailId: String, folder: String): List<Mail> {
-        val list = MailBoxHandler.getMail(email, mailId, folder).reversed()
-        val checkList = mutableSetOf<String>()
-        if (folder == "inbox") return list.filter { i ->
-            if (checkList.contains(i.id)) false else checkList.add(i.id)
-        }
-        return list
+        return MailBoxHandler.getMail(email, mailId, folder).reversed()
     }
 }

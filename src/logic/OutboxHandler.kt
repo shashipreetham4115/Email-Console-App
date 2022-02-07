@@ -4,6 +4,7 @@ import entites.Mail
 import logic.datahandler.EmailDataHandler
 import logic.datahandler.MailBoxHandler
 import logic.services.OutboxServices
+import java.util.*
 
 class OutboxHandler : OutboxServices {
 
@@ -24,15 +25,9 @@ class OutboxHandler : OutboxServices {
         }
     }
 
-    private fun mailer(email: String, mail: Mail) {
-        val uid = EmailDataHandler.getUserId(email)
-        if (uid == null) failureHandler(mail.from, email, "Invalid Domain or Mail ID")
-        else successHandler(mail, email)
-    }
-
     override fun successHandler(mail: Mail, to: String) {
         try {
-            val newMail = mail.copy(folder = "inbox")
+            val newMail = mail.copy(folder = "inbox", id = UUID.randomUUID().toString())
             val response = MailBoxHandler.addMail(newMail, to)
             if (!response) failureHandler(mail.from, to, "Internal Server Error")
             else MailBoxHandler.updateMail(mail.from, mail.id, "folder", "sent")
@@ -52,5 +47,11 @@ class OutboxHandler : OutboxServices {
             MailBoxHandler.addMail(mail, from)
         } catch (e: Exception) {
         }
+    }
+
+    private fun mailer(email: String, mail: Mail) {
+        val uid = EmailDataHandler.getUserId(email)
+        if (uid == null) failureHandler(mail.from, email, "Invalid Domain or Mail ID")
+        else successHandler(mail, email)
     }
 }

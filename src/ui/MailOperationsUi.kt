@@ -21,8 +21,8 @@ class MailOperationsUi : MailOperationsUiServices {
         return fetch.fetch(AuthenticateUi.loggedInUser?.email!!, mailId, folder)
     }
 
-    override fun delete(mailIds: List<String>) {
-        delete.delete(AuthenticateUi.loggedInUser?.email!!, mailIds)
+    override fun delete(mailIds: List<String>, folder: String) {
+        delete.delete(AuthenticateUi.loggedInUser?.email!!, mailIds, folder)
     }
 
     override fun markAsUnRead(mailIds: List<String>) {

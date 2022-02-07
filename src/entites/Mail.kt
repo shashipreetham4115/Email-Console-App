@@ -10,7 +10,7 @@ data class Mail(
     var body: String,
     var CC: List<String> = listOf(),
     var BCC: List<String> = listOf(),
-    var folder: String = "outbox",
+    var folder: String = "",
     val id: String = UUID.randomUUID().toString(),
     var childMailId: String? = null,
     var headMailId: String = UUID.randomUUID().toString(),
