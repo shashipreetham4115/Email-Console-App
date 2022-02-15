@@ -1,17 +1,17 @@
 package ui
 
 import entites.Mail
-import logic.*
 import logic.services.*
 import ui.services.MailOperationsUiServices
 import ui.utils.FormatterUtils
 
-class MailOperationsUi : MailOperationsUiServices {
-    private val fetch: FetchMailServices = FetchMailHandler()
-    private val delete: DeleteMailServices = DeleteMailHandler()
-    private val operations: MarkMailServices = MarkMailHandler()
-    private val send: SendMailServices = SendMailHandler()
-    private val draft: DraftMailServices = DraftMailHandler()
+class MailOperationsUi(
+    private val fetch: FetchMailServices,
+    private val delete: DeleteMailServices,
+    private val send: SendMailServices,
+    private val draft: DraftMailServices,
+    private val operations: MarkMailServices,
+) : MailOperationsUiServices {
 
     override fun fetchFolder(folder: String): List<Mail> {
         return fetch.fetchFolder(AuthenticateUi.loggedInUser?.email!!, folder)

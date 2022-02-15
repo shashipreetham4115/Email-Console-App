@@ -1,6 +1,7 @@
 package ui
 
 import entites.Mail
+import logic.*
 import ui.services.MailOperationsUiServices
 import ui.services.MailUiServices
 import ui.services.ToDoMenuServices
@@ -10,7 +11,13 @@ import ui.utils.InputUtil
 import ui.utils.MenuList
 
 class MailUi(val folder: String) : ToDoMenuServices, MailUiServices {
-    private val operations: MailOperationsUiServices = MailOperationsUi()
+    private val operations: MailOperationsUiServices = MailOperationsUi(
+        FetchMailHandler(),
+        DeleteMailHandler(),
+        SendMailHandler(),
+        DraftMailHandler(),
+        MarkMailHandler()
+    )
     private var mailList = listOf<Mail>()
 
     override fun toDoMenu() {

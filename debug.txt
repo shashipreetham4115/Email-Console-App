@@ -1,5 +1,5 @@
 
-1f27aa065de74e988a1fba900d3456a7
+749cf61a35ca484d869bca56d54c8090
 
 Mail(from=welcome@zoho.com, to=[shashipreetham@zoho.com], subject=Welcome to Zoho Mail, body=Hello,
 
@@ -9,10 +9,34 @@ Thanks for choosing Zoho Mail! We’re glad to have you with us!
 
 Thanks and Regards,
 Zoho Mail Team.
-, CC=[], BCC=[], folder=inbox, id=8fcc82af-4488-43d2-b3c9-4e9a491bd37f, childMailId=null, headMailId=c40c5888-7ad3-4a4b-b12b-730fdbfe5caf, unRead=true, important=false, sentDate=2022-02-07T10:02:36.315)
+, CC=[], BCC=[], folder=inbox, id=fcfb81c9-18e4-4310-862f-8325fd5dfe20, childMailId=null, headMailId=42fc0cd4-292a-4519-8307-30ace803954e, unRead=true, important=false, sentDate=2022-02-08T11:03:47.476)
+
+Mail(from=reddy@zoho.com, to=[shashipreetham@zoho.com], subject=Fwd: Hello, body=
+
+============ Forwarded message ============
+From    : reddy@zoho.com
+To      : raja@zoho.com, reddy@zoho.com
+Date    : 08/02/2022 11:09 AM
+Subject : Hello
+============ Forwarded message ============
+  
+   
+    Hi,
+    Thanks you so much.
+    
+    ---- On 08/02/2022 11:07 AM raja@zoho.com wrote ----
+       
+       
+        Hello,
+        
+        Welcome to team reddy.
+        
+        Regards,
+        Raja.
+, CC=[], BCC=[], folder=inbox, id=90bd740e-2187-443b-bc62-b26495dbf8b2, childMailId=null, headMailId=35b5c8a5-c8d1-41ca-bd3b-695cf6df01f2, unRead=true, important=false, sentDate=2022-02-08T11:11:28.449)
 
 
-6d5418a5343d43da9fa89d98854fb242
+6362e48d64934dfe8d1b94fa0bb74952
 
 Mail(from=welcome@zoho.com, to=[mailer@zoho.com], subject=Welcome to Zoho Mail, body=Hello,
 
@@ -22,10 +46,10 @@ Thanks for choosing Zoho Mail! We’re glad to have you with us!
 
 Thanks and Regards,
 Zoho Mail Team.
-, CC=[], BCC=[], folder=inbox, id=ece0b2fa-3b89-4059-a58f-ec2de6a53fa1, childMailId=null, headMailId=100e15e2-02d0-4eba-b7ea-32db9799495f, unRead=true, important=false, sentDate=2022-02-07T10:02:36.315)
+, CC=[], BCC=[], folder=inbox, id=f6b65af7-fcee-4e8a-8f81-797eb5506ae1, childMailId=null, headMailId=8d1b8c73-7adf-4a5c-9e0d-ec08832c9fd6, unRead=true, important=false, sentDate=2022-02-08T11:03:47.480)
 
 
-17abe1d6dbb642f78176f74bb9109792
+f87c8fe76c1b42f7996c06c7d7edec49
 
 Mail(from=welcome@zoho.com, to=[welcome@zoho.com], subject=Welcome to Zoho Mail, body=Hello,
 
@@ -35,10 +59,10 @@ Thanks for choosing Zoho Mail! We’re glad to have you with us!
 
 Thanks and Regards,
 Zoho Mail Team.
-, CC=[], BCC=[], folder=inbox, id=bcfe4de9-bed6-4823-975c-100cafcb30ae, childMailId=null, headMailId=29a8f37e-47fa-4562-9610-e9ddff766aa8, unRead=true, important=false, sentDate=2022-02-07T10:02:36.315)
+, CC=[], BCC=[], folder=inbox, id=d04d2c41-395b-4936-8c9c-808e38c0106e, childMailId=null, headMailId=a1ab81ca-71c6-4ac9-9875-e18423cd9575, unRead=true, important=false, sentDate=2022-02-08T11:03:47.484)
 
 
-6593303a792442aa81eff84ffcef0a8e
+83a6c54c601e4a34977d0b451885e27c
 
 Mail(from=welcome@zoho.com, to=[no-reply@zoho.com], subject=Welcome to Zoho Mail, body=Hello,
 
@@ -48,10 +72,10 @@ Thanks for choosing Zoho Mail! We’re glad to have you with us!
 
 Thanks and Regards,
 Zoho Mail Team.
-, CC=[], BCC=[], folder=inbox, id=f88086b4-c239-4c04-83d7-c975e02e6cc8, childMailId=null, headMailId=882f7f66-5181-40e0-8010-be065321f68a, unRead=true, important=false, sentDate=2022-02-07T10:02:36.315)
+, CC=[], BCC=[], folder=inbox, id=a83735ca-b3d9-4a60-91a0-7fe17d1b32ab, childMailId=null, headMailId=0ee4b248-d95c-4cfd-a194-62632713dc0f, unRead=true, important=false, sentDate=2022-02-08T11:03:47.487)
 
 
-b2b4543d5fdc41019bd6b49361412542
+02dc6ca8235141d9a457672ece61f027
 
 Mail(from=welcome@zoho.com, to=[reddy@zoho.com], subject=Welcome to Zoho Mail, body=Hello,
 
@@ -61,5 +85,103 @@ Thanks for choosing Zoho Mail! We’re glad to have you with us!
 
 Thanks and Regards,
 Zoho Mail Team.
-, CC=[], BCC=[], folder=inbox, id=f68e6c66-b814-4144-9fc1-9674bf06496a, childMailId=null, headMailId=ba90b742-b700-4698-957d-2b1e1065ead7, unRead=true, important=false, sentDate=2022-02-07T10:02:36.331)
+, CC=[], BCC=[], folder=inbox, id=00930c02-db1d-4e0a-a200-b25e6ac583ea, childMailId=null, headMailId=f1fd8088-dafb-48b0-9ba7-1c1afea75c7a, unRead=true, important=false, sentDate=2022-02-08T11:03:47.490)
+
+Mail(from=raja@zoho.com, to=[reddy@zoho.com], subject=Hello, body=
+Hello,
+
+Welcome to team reddy.
+
+Regards,
+Raja., CC=[], BCC=[], folder=inbox, id=f75c282d-3fa1-4ecf-bc91-23cff905fb3c, childMailId=0ecd9fe8-f0d3-4a57-b5d2-da98cb6c8ed6, headMailId=c54f8ac9-f404-4652-9d17-1cae8abe50d0, unRead=false, important=false, sentDate=2022-02-08T11:07:14.529)
+
+Mail(from=reddy@zoho.com, to=[raja@zoho.com, reddy@zoho.com], subject=Hello, body=
+Hi,
+Thanks you so much.
+
+---- On 08/02/2022 11:07 AM raja@zoho.com wrote ----
+   
+   
+    Hello,
+    
+    Welcome to team reddy.
+    
+    Regards,
+    Raja.
+, CC=[], BCC=[], folder=sent, id=0ecd9fe8-f0d3-4a57-b5d2-da98cb6c8ed6, childMailId=null, headMailId=c54f8ac9-f404-4652-9d17-1cae8abe50d0, unRead=false, important=false, sentDate=2022-02-08T11:09:10.962)
+
+Mail(from=reddy@zoho.com, to=[raja@zoho.com, reddy@zoho.com], subject=Hello, body=
+Hi,
+Thanks you so much.
+
+---- On 08/02/2022 11:07 AM raja@zoho.com wrote ----
+   
+   
+    Hello,
+    
+    Welcome to team reddy.
+    
+    Regards,
+    Raja.
+, CC=[], BCC=[], folder=inbox, id=52d3ebd4-b05f-4a6a-b488-82056b51db5c, childMailId=null, headMailId=c54f8ac9-f404-4652-9d17-1cae8abe50d0, unRead=false, important=false, sentDate=2022-02-08T11:09:10.962)
+
+Mail(from=reddy@zoho.com, to=[shashipreetham@zoho.com], subject=Fwd: Hello, body=
+
+============ Forwarded message ============
+From    : reddy@zoho.com
+To      : raja@zoho.com, reddy@zoho.com
+Date    : 08/02/2022 11:09 AM
+Subject : Hello
+============ Forwarded message ============
+  
+   
+    Hi,
+    Thanks you so much.
+    
+    ---- On 08/02/2022 11:07 AM raja@zoho.com wrote ----
+       
+       
+        Hello,
+        
+        Welcome to team reddy.
+        
+        Regards,
+        Raja.
+, CC=[], BCC=[], folder=sent, id=9fb7bad9-099f-43a0-b4c3-142fad4b0d78, childMailId=null, headMailId=35b5c8a5-c8d1-41ca-bd3b-695cf6df01f2, unRead=false, important=false, sentDate=2022-02-08T11:11:28.449)
+
+
+c0069ecdc4d345a38936fbd2598505cd
+
+Mail(from=welcome@zoho.com, to=[raja@zoho.com], subject=Welcome to Zoho Mail, body=Hello,
+
+Welcome to Zoho Mail! The 'forever ad-free' email service, for all your business and personal email.
+We created Zoho Mail to help people and businesses work smarter and take control of their inbox. 
+Thanks for choosing Zoho Mail! We’re glad to have you with us!
+
+Thanks and Regards,
+Zoho Mail Team.
+, CC=[], BCC=[], folder=inbox, id=a688bec3-1ab0-4ebb-83fb-032e8a8d5e7f, childMailId=null, headMailId=01261d0a-9473-47e9-8222-4b4991f7d974, unRead=false, important=true, sentDate=2022-02-08T11:05:19.901)
+
+Mail(from=raja@zoho.com, to=[reddy@zoho.com], subject=Hello, body=
+Hello,
+
+Welcome to team reddy.
+
+Regards,
+Raja., CC=[], BCC=[], folder=sent, id=37605b6d-3d56-41c7-bebe-2dba399bf6d0, childMailId=null, headMailId=c54f8ac9-f404-4652-9d17-1cae8abe50d0, unRead=true, important=false, sentDate=2022-02-08T11:07:14.529)
+
+Mail(from=reddy@zoho.com, to=[raja@zoho.com, reddy@zoho.com], subject=Hello, body=
+Hi,
+Thanks you so much.
+
+---- On 08/02/2022 11:07 AM raja@zoho.com wrote ----
+   
+   
+    Hello,
+    
+    Welcome to team reddy.
+    
+    Regards,
+    Raja.
+, CC=[], BCC=[], folder=inbox, id=681959fc-54b3-4114-8442-19a012c16a75, childMailId=null, headMailId=c54f8ac9-f404-4652-9d17-1cae8abe50d0, unRead=true, important=false, sentDate=2022-02-08T11:09:10.962)
 

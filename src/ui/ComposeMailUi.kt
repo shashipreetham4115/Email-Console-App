@@ -1,13 +1,20 @@
 package ui
 
 import entites.Mail
+import logic.*
 import ui.services.ComposeMailUiServices
 import ui.services.MailOperationsUiServices
 import ui.services.ToDoMenuServices
 import ui.utils.*
 
 class ComposeMailUi(var mail: Mail? = null) : ToDoMenuServices, ComposeMailUiServices {
-    private val operationsUi: MailOperationsUiServices = MailOperationsUi()
+    private val operationsUi: MailOperationsUiServices = MailOperationsUi(
+        FetchMailHandler(),
+        DeleteMailHandler(),
+        SendMailHandler(),
+        DraftMailHandler(),
+        MarkMailHandler()
+    )
 
     override fun toDoMenu() {
         mail = if (mail == null) composeMail() else editMail()
